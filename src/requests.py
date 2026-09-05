@@ -26,7 +26,7 @@ class Client(AsyncHttpClient):
         rules=[
             RetryRule(
                 exception=[ServerError, ConnectionError],
-                new_proxy=ProxySettings(groups=["auto"], country_code="DE"),
+                new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
             ),
@@ -47,7 +47,7 @@ class Client(AsyncHttpClient):
         rules=[
             RetryRule(
                 exception=[ServerError, ConnectionError],
-                new_proxy=ProxySettings(groups=["auto"], country_code="DE"),
+                new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
             ),
@@ -76,7 +76,7 @@ class Client(AsyncHttpClient):
         rules=[
             RetryRule(
                 exception=[ServerError, ConnectionError],
-                new_proxy=ProxySettings(groups=["auto"], country_code="DE"),
+                new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
             ),
