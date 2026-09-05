@@ -1,3 +1,4 @@
+from apify._actor import _ActorType, Actor
 from apify_common.client import AsyncHttpClient, ProxySettings
 from apify_common.retry import RetryRule, retry
 from curl_cffi.requests.exceptions import ConnectionError
@@ -67,8 +68,9 @@ class Client(AsyncHttpClient):
             headers=HEADERS,
         )
 
-        if response.status_code >= 500:
-            raise ServerError("Server error occurred.")
+        if response.status_code == 500 and "Internal Server Error" in response.text:
+            Actor.log.warning("There are no reviews for this hotel yet.")
+            return AggregateResponse.model_validate({"reviews": None, "rating": None})
 
         return AggregateResponse.model_validate(response.json())
 
