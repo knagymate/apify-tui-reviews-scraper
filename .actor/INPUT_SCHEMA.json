@@ -1,0 +1,47 @@
+{
+  "title": "TUI Review Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Hotel URLs",
+      "type": "array",
+      "description": "Hotel detail page URLs on TUI to scrape reviews from.",
+      "editor": "requestListSources",
+      "prefill": [
+        {
+          "url": "https://www.tui.com/hotel/suchen/angebote/TUI-KIDS-CLUB-Wangerland-Resort/92399/offer/"
+        }
+      ]
+    },
+    "maxReviewsPerHotel": {
+      "title": "Maximum number of reviews per hotel",
+      "type": "integer",
+      "description": "Maximum number of reviews to scrape per hotel",
+      "default": 100,
+      "editor": "number",
+      "prefill": 100,
+      "minimum": 1
+    },
+    "cutoffDate": {
+      "title": "Cutoff date",
+      "type": "string",
+      "description": "Only keep reviews on or after this date (YYYY-MM-DD). Interpreted as a local date, assumed to be in the Europe/Berlin timezone — TUI does not expose timezone information. Leave empty to scrape all available reviews.",
+      "editor": "datepicker",
+      "dateType": "absolute",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "example": "2025-01-01"
+    },
+    "alwaysReturnSummary": {
+      "title": "Always return a summary",
+      "type": "boolean",
+      "description": "Whether to always return a summary of hotel reviews, even if no reviews were found.",
+      "editor": "checkbox",
+      "default": true,
+      "prefill": true
+    }
+  },
+  "required": [
+    "startUrls"
+  ]
+}

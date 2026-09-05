@@ -1,0 +1,42 @@
+---
+name: QA checks
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:  # launches
+      fail-fast: false
+      matrix:
+        task:
+        - check_fmt
+        - lint
+        - check_types
+
+    steps:
+    - uses: actions/checkout@v4.1.1
+      with:
+        fetch-depth: 0
+
+    - name: Configure git to use token
+      run: |
+        git config --global url."https://${{ secrets.APIFY_COMMON_REPO_TOKEN }}:@github.com/".insteadOf "https://github.com/"
+
+    - name: Set up Python 3.13.0
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.13.0
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: ${{ inputs.uv_version }}
+
+    - name: Install uv dependencies
+      run: uv sync --python 3.13.0
+
+    - name: Run QA
+      run: uv run task ${{ matrix['task'] }}

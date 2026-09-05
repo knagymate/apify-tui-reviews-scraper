@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Apify local storage
+storage/
+apify_storage/
+cassette.json
+.idea/
