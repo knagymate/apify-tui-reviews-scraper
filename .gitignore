@@ -221,4 +221,4 @@ __marimo__/
 storage/
 apify_storage/
 cassette.json
-.idea
+.idea/
