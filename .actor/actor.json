@@ -1,0 +1,18 @@
+{
+  "actorSpecification": 1,
+  "name": "tui-reviews-scraper",
+  "title": "TUI Reviews Scraper",
+  "description": "Scrapes guest reviews and ratings from TUI hotel pages.",
+  "version": "0.0",
+  "buildTag": "latest",
+  "minMemoryMbytes": 256,
+  "maxMemoryMbytes": 256,
+  "meta": {
+    "templateId": "python-empty"
+  },
+  "dockerfile": "./Dockerfile",
+  "storages": {
+    "dataset": "./DATASET_SCHEMA.json"
+  },
+  "output": "./OUTPUT_SCHEMA.json"
+}

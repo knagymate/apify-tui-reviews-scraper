@@ -1,0 +1,43 @@
+[project]
+name = "apify-tui-reviews-scraper"
+version = "0.1.0"
+description = "TUI Reviews Scraper"
+readme = "README.md"
+requires-python = "~=3.13.0"
+dependencies = [
+    "apify-common",
+    "arrow>=1.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.400",
+    "pytest>=9.1.0",
+    "ruff>=0.11.7",
+    "taskipy>=1.14.1",
+]
+
+[tool.taskipy.tasks]
+lint = "ruff check ."
+check_types = "pyright"
+check_fmt = "ruff format --check ."
+fmt = "ruff check --select I --fix . && ruff format"
+check = "task lint && task check_fmt && task check_types"
+
+[tool.ruff.lint]
+select = [
+    "W", # pycodestyle
+    "F", # pyflakes
+    "I", # isort
+    "B", # flake8-bugbear
+    "UP", # pyupgrade
+    "RUF", # ruff specific
+    "PIE", # flake8-pie
+    "ASYNC", # flake8-async
+    "ICN", # flake8-import-conventions
+    "INP", # flake8-no-pep420
+    "TID", # flake8-tidy-imports
+]
+
+[tool.uv.sources]
+apify-common = { git = "https://github.com/knagymate/apify-common", tag = "0.1.4" }

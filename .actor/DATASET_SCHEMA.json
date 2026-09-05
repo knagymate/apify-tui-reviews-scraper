@@ -1,0 +1,280 @@
+{
+  "actorSpecification": 1,
+  "title": "TUI Review Dataset",
+  "description": "Dataset containing reviews and summary data scraped from TUI",
+  "fields": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "recordType": {
+        "type": "string",
+        "enum": [
+          "review",
+          "summary"
+        ]
+      },
+      "reviewId": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reviewDate": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "format": "date-time"
+      },
+      "reviewerName": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reviewerType": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reviewerAgeGroup": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "travelSeason": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "language": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reviewTitle": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "reviewText": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "hotelRecommendation": {
+        "type": [
+          "boolean",
+          "null"
+        ]
+      },
+      "ratings": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "average": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "cleanliness": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "foodAndDrinks": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "staffService": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "childFriendliness": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "accommodationCondition": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "activityAndEntertainment": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5
+          }
+        }
+      },
+      "hotelSummary": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "hotelId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "startUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "actualUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "numberOfReviews": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "recommendationRate": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "lastReviewDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "ratings": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "average": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "cleanliness": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "foodAndDrinks": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "staffService": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "childFriendliness": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "accommodationCondition": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              },
+              "activityAndEntertainment": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0,
+                "maximum": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "recordType"
+    ]
+  },
+  "views": {
+    "overview": {
+      "title": "TUI Review",
+      "transformation": {
+        "fields": [
+          "recordType",
+          "reviewId",
+          "reviewDate",
+          "reviewerName",
+          "reviewerType",
+          "reviewerAgeGroup",
+          "travelSeason",
+          "language",
+          "reviewTitle",
+          "reviewText",
+          "hotelRecommendation",
+          "ratings",
+          "hotelSummary"
+        ]
+      }
+    }
+  }
+}
