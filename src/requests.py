@@ -1,4 +1,4 @@
-from apify._actor import _ActorType, Actor
+from apify._actor import Actor
 from apify_common.client import AsyncHttpClient, ProxySettings
 from apify_common.retry import RetryRule, retry
 from curl_cffi.requests.exceptions import ConnectionError
