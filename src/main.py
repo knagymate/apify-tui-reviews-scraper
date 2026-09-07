@@ -12,7 +12,7 @@ from src.models import (
     ReviewRatings,
     ScoreItem,
 )
-from src.parser import parse_hotel_id_from_html
+from src.parser import parse_hotel_id_from_html, parse_hotel_id_from_url
 from src.requests import Client
 
 SCORE_KEY_MAP = {
@@ -79,12 +79,22 @@ class Actor(CommonActor):
     ) -> None:
         self.log.info(f"Scraping URL: {start_url}")
         html, actual_url = await client.get_start_url(start_url)
+
         hotel_id = parse_hotel_id_from_html(html)
+        hotel_id_source = "html"
+
         if not hotel_id:
-            self.log.warning(f"No hotel id found for {start_url}")
+            self.log.warning(
+                f"No hotel id found for {start_url} in html, let's try to parse it from the actual URL."
+            )
+            hotel_id = parse_hotel_id_from_url(actual_url)
+            hotel_id_source = "actual URL"
+
+        if not hotel_id:
+            self.log.warning(f"No hotel id found for {start_url} in actual URL.")
             return
-        else:
-            self.log.info(f"Found hotel id: {hotel_id}")
+
+        self.log.info(f"Found hotel id: {hotel_id} from {hotel_id_source}.")
 
         aggregate = await client.get_aggregate(hotel_id)
         hotel_summary = build_hotel_summary(hotel_id, start_url, actual_url, aggregate)

@@ -2,10 +2,19 @@ import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 HOTEL_ID_PATTERN = re.compile(r"hotel\-id\s?=\s?'(\d+)'")
+HOTEL_ID_URL_PATTERN = re.compile(r"/(\d+)")
 
 
 def parse_hotel_id_from_html(html: str) -> str | None:
     match = HOTEL_ID_PATTERN.search(html)
+    if match:
+        return match.group(1)
+
+    return None
+
+
+def parse_hotel_id_from_url(url: str) -> str | None:
+    match = HOTEL_ID_URL_PATTERN.search(url)
     if match:
         return match.group(1)
 
