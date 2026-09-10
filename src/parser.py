@@ -2,7 +2,7 @@ import re
 from urllib.parse import parse_qs, urlencode, urlparse, urlunparse
 
 HOTEL_ID_PATTERN = re.compile(r"hotel\-id\s?=\s?'(\d+)'")
-HOTEL_ID_URL_PATTERN = re.compile(r"/(\d+)")
+HOTEL_ID_URL_PATTERN = re.compile(r"[/,-](\d+)")
 
 
 def parse_hotel_id_from_html(html: str) -> str | None:
