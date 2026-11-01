@@ -40,4 +40,4 @@ select = [
 ]
 
 [tool.uv.sources]
-apify-common = { git = "https://github.com/knagymate/apify-common", tag = "0.1.4" }
+apify-common = { git = "https://github.com/knagymate/apify-common", tag = "0.1.6" }
