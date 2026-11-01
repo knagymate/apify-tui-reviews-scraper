@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:  # launches
       fail-fast: false
@@ -25,10 +25,10 @@ jobs:
       run: |
         git config --global url."https://${{ secrets.APIFY_COMMON_REPO_TOKEN }}:@github.com/".insteadOf "https://github.com/"
 
-    - name: Set up Python 3.13.0
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.13.7
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.13.0
+        python-version: '3.13.7'
 
     - name: Install uv
       uses: astral-sh/setup-uv@v5
@@ -36,7 +36,7 @@ jobs:
         version: ${{ inputs.uv_version }}
 
     - name: Install uv dependencies
-      run: uv sync --python 3.13.0
+      run: uv sync --python 3.13.7
 
     - name: Run QA
       run: uv run task ${{ matrix['task'] }}

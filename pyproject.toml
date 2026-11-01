@@ -3,7 +3,7 @@ name = "apify-tui-reviews-scraper"
 version = "0.1.0"
 description = "TUI Reviews Scraper"
 readme = "README.md"
-requires-python = "~=3.13.0"
+requires-python = "~=3.13.7"
 dependencies = [
     "apify-common",
     "arrow>=1.3.0",
@@ -40,4 +40,4 @@ select = [
 ]
 
 [tool.uv.sources]
-apify-common = { git = "https://github.com/knagymate/apify-common", tag = "0.1.4" }
+apify-common = { git = "https://github.com/knagymate/apify-common", tag = "0.1.6" }
