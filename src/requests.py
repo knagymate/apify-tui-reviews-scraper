@@ -1,7 +1,7 @@
 from apify._actor import Actor
 from apify_common.client import AsyncHttpClient, ProxySettings
 from apify_common.retry import RetryRule, retry
-from curl_cffi.requests.exceptions import ConnectionError
+from curl_cffi.requests.exceptions import RequestException
 
 from src.exceptions import ServerError
 from src.models import AggregateResponse, ReviewsPage
@@ -26,7 +26,7 @@ class Client(AsyncHttpClient):
     @retry(
         rules=[
             RetryRule(
-                exception=[ServerError, ConnectionError],
+                exception=[ServerError, RequestException],
                 new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
@@ -47,7 +47,7 @@ class Client(AsyncHttpClient):
     @retry(
         rules=[
             RetryRule(
-                exception=[ServerError, ConnectionError],
+                exception=[ServerError, RequestException],
                 new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
@@ -77,7 +77,7 @@ class Client(AsyncHttpClient):
     @retry(
         rules=[
             RetryRule(
-                exception=[ServerError, ConnectionError],
+                exception=[ServerError, RequestException],
                 new_proxy=ProxySettings(groups=["auto"], country_code="US"),
                 new_impersonate=True,
                 clean_cookies=True,
