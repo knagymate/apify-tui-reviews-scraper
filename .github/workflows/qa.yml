@@ -8,13 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-24.04
 
-    strategy:  # launches
+    strategy:
       fail-fast: false
       matrix:
         task:
         - check_fmt
         - lint
         - check_types
+        # Only add "- test" if tests exist:
+        - test
 
     steps:
     - uses: actions/checkout@v4.1.1
